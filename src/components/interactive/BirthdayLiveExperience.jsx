@@ -1674,7 +1674,7 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
                 gap: '8px'
               }}
             >
-              <RotateCcw size={16} /> Replay Experience
+              <RotateCcw size={16} />
             </button>
 
             <MagneticButton
