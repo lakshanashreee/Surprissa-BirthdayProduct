@@ -198,7 +198,7 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
     setLovedPhotos({});
   };
 
-  // --- STAGE 1: Russian Doll Box Handlers ---
+  // --- STAGE 1: Russian Doll Shrinking Gift Box Handlers (5 Press Progression) ---
   const handleBoxClick = () => {
     if (boxStep === 1) {
       playPop();
@@ -213,12 +213,16 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
       setBoxStep(4);
       setBoxMsg("Hold on, one more tiny one...");
     } else if (boxStep === 4) {
+      playPop();
+      setBoxStep(5);
+      setBoxMsg("It's microscopic now! One last tap...!");
+    } else if (boxStep === 5) {
       playSuccess();
-      try { confetti({ particleCount: 80, spread: 70 }); } catch (e) { }
-      setBoxMsg("Okay NOW there's actually something. Let's see how loved you are...");
+      try { confetti({ particleCount: 110, spread: 85 }); } catch (e) { }
+      setBoxMsg("✨ UNLOCKING STACY'S BIRTHDAY SURPRISE! ✨");
       setTimeout(() => {
         setCurrentStage(2);
-      }, 950);
+      }, 900);
     }
   };
 
@@ -415,41 +419,41 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
     <div style={{
       position: 'relative',
       width: '100%',
-      minHeight: '100%',
+      minHeight: '100vh',
       color: 'var(--color-ivory)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 'clamp(16px, 4vw, 40px)',
+      padding: 'clamp(20px, 4vw, 40px)',
       overflowX: 'hidden'
     }}>
 
       {/* ========================================================
-          TRANSPARENT FLOATING STICKERS & AESTHETIC ELEMENTS
+          TRANSPARENT FLOATING STICKERS & AESTHETIC ELEMENTS (FIXED TO VIEWPORT)
          ======================================================== */}
       {/* Top-Left Pink Flower Sticker */}
-      <div style={{ position: 'absolute', top: '15px', left: '15px', width: 'clamp(65px, 10vw, 115px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float">
-        <img src="/assets/flowers/Pink flower.png" alt="Flower Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
+      <div style={{ position: 'fixed', top: '24px', left: '24px', width: 'clamp(70px, 8vw, 115px)', pointerEvents: 'none', zIndex: 40, opacity: 0.95 }} className="animate-float">
+        <img src="/assets/flowers/Pink flower.png" alt="Flower Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.4))' }} />
       </div>
 
-      {/* Top-Right Blue Flower Sticker */}
-      <div style={{ position: 'absolute', top: '15px', right: '15px', width: 'clamp(70px, 11vw, 125px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float-delayed">
-        <img src="/assets/flowers/blue-anemone-flower.png" alt="Blue Flower Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
+      {/* Top-Right Blue Flower Sticker (positioned below sound button) */}
+      <div style={{ position: 'fixed', top: '75px', right: '24px', width: 'clamp(75px, 8vw, 125px)', pointerEvents: 'none', zIndex: 40, opacity: 0.95 }} className="animate-float-delayed">
+        <img src="/assets/flowers/blue-anemone-flower.png" alt="Blue Flower Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.4))' }} />
       </div>
 
       {/* Bottom-Left Birthday Cat with Bouquet Sticker */}
-      <div style={{ position: 'absolute', bottom: '15px', left: '15px', width: 'clamp(75px, 12vw, 130px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float-delayed">
-        <img src="/assets/cat/birthdaycatwithflowers.png" alt="Birthday Cat Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
+      <div style={{ position: 'fixed', bottom: '24px', left: '24px', width: 'clamp(80px, 9vw, 130px)', pointerEvents: 'none', zIndex: 40, opacity: 0.95 }} className="animate-float-delayed">
+        <img src="/assets/cat/birthdaycatwithflowers.png" alt="Birthday Cat Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.4))' }} />
       </div>
 
       {/* Bottom-Right Cute Sticker with Bouquet */}
-      <div style={{ position: 'absolute', bottom: '15px', right: '15px', width: 'clamp(65px, 10vw, 110px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float">
-        <img src="/assets/stickers/cutestwithbouquet.png" alt="Cute Bouquet Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
+      <div style={{ position: 'fixed', bottom: '24px', right: '24px', width: 'clamp(70px, 8vw, 110px)', pointerEvents: 'none', zIndex: 40, opacity: 0.95 }} className="animate-float">
+        <img src="/assets/stickers/cutestwithbouquet.png" alt="Cute Bouquet Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.4))' }} />
       </div>
 
       {/* ========================================================
-          STAGE 1: THE SUSPICIOUS RUSSIAN DOLL GIFT BOX
+          STAGE 1: THE INTERACTIVE BIRTHDAY GIFT BOX
          ======================================================== */}
       {currentStage === 1 && (
         <motion.div
@@ -457,7 +461,7 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          style={{ textAlign: 'center', maxWidth: '580px', zIndex: 10 }}
+          style={{ textAlign: 'center', maxWidth: '600px', zIndex: 10 }}
         >
           <div style={{
             display: 'inline-flex',
@@ -484,40 +488,54 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
             "{boxMsg}"
           </h2>
 
-          {/* Interactive Shrinking Russian Doll Box */}
-          <motion.div
-            onClick={handleBoxClick}
-            whileHover={{ scale: 1.08, rotate: [0, -3, 3, 0] }}
-            whileTap={{ scale: 0.92 }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ y: { repeat: Infinity, duration: 2, ease: 'easeInOut' } }}
-            style={{
-              width: boxStep === 1 ? '170px' : boxStep === 2 ? '120px' : boxStep === 3 ? '85px' : '55px',
-              height: boxStep === 1 ? '170px' : boxStep === 2 ? '120px' : boxStep === 3 ? '85px' : '55px',
-              margin: '0 auto 28px',
-              backgroundColor: 'var(--color-burgundy-primary)',
-              border: '3px solid var(--color-peach-primary)',
-              borderRadius: boxStep === 4 ? '14px' : '26px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              boxShadow: 'var(--shadow-glow)',
-              position: 'relative',
-              transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)'
-            }}
-          >
-            <Gift size={boxStep === 1 ? 70 : boxStep === 2 ? 48 : boxStep === 3 ? 34 : 24} color="var(--color-peach-primary)" />
+          {/* Dedicated Fixed-Height Box Arena: Keeps background and page rock-solid so screen never collapses */}
+          <div style={{
+            height: '210px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 20px',
+            position: 'relative'
+          }}>
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
-              style={{ position: 'absolute', top: '-10px', right: '-10px' }}
+              onClick={handleBoxClick}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.9 }}
+              animate={{
+                y: [0, -6, 0],
+                rotate: boxStep % 2 === 0 ? [0, -4, 4, 0] : [0, 4, -4, 0]
+              }}
+              transition={{
+                y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
+                rotate: { repeat: Infinity, duration: 2.2, ease: 'easeInOut' }
+              }}
+              style={{
+                width: boxStep === 1 ? '180px' : boxStep === 2 ? '135px' : boxStep === 3 ? '95px' : boxStep === 4 ? '64px' : '42px',
+                height: boxStep === 1 ? '180px' : boxStep === 2 ? '135px' : boxStep === 3 ? '95px' : boxStep === 4 ? '64px' : '42px',
+                backgroundColor: 'var(--color-burgundy-primary)',
+                border: '3px solid var(--color-peach-primary)',
+                borderRadius: boxStep === 1 ? '28px' : boxStep === 2 ? '22px' : boxStep === 3 ? '18px' : boxStep === 4 ? '14px' : '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                boxShadow: '0 0 35px rgba(255, 217, 194, 0.45)',
+                position: 'relative',
+                transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)'
+              }}
             >
-              <Sparkles size={20} color="#FFD9C2" />
+              <Gift size={boxStep === 1 ? 72 : boxStep === 2 ? 54 : boxStep === 3 ? 38 : boxStep === 4 ? 26 : 18} color="var(--color-peach-primary)" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
+                style={{ position: 'absolute', top: '-8px', right: '-8px' }}
+              >
+                <Sparkles size={boxStep === 1 ? 24 : boxStep === 2 ? 20 : boxStep === 3 ? 16 : boxStep === 4 ? 13 : 10} color="#FFD9C2" />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
 
-          <p style={{ fontSize: '0.88rem', color: 'var(--color-peach-soft)' }}>
+          <p style={{ fontSize: '0.9rem', color: 'var(--color-peach-soft)' }}>
             Tap the gift box to open it
           </p>
         </motion.div>
@@ -1571,44 +1589,70 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
              ======================================================== */}
           <AnimatePresence>
             {letterUnsealed && (
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                style={{
-                  backgroundColor: '#FFF4EB',
-                  color: '#2B0404',
-                  padding: '36px 30px',
-                  borderRadius: '24px',
-                  boxShadow: '0 15px 40px rgba(0,0,0,0.5)',
-                  textAlign: 'left',
-                  margin: '20px auto 32px',
-                  border: '2px solid var(--color-peach-primary)',
-                  position: 'relative'
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', borderBottom: '1.5px solid rgba(141, 11, 11, 0.15)', paddingBottom: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Mail size={20} color="#8D0B0B" />
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-burgundy-primary)', letterSpacing: '0.05em' }}>
-                      CONFIDENTIAL BIRTHDAY NOTE ✦ UNSEALED
-                    </span>
-                  </div>
+              <>
+                {/* RAINING HEARTS PARTICLES FOR UNSEALED LETTER */}
+                <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 50, overflow: 'hidden' }}>
+                  {[...Array(24)].map((_, i) => (
+                    <motion.div
+                      key={`letter-heart-${i}`}
+                      initial={{ y: -50, x: `${(i * 4.2) % 100}vw`, opacity: 0.85, scale: 0.6 + (i % 5) * 0.2 }}
+                      animate={{
+                        y: '110vh',
+                        x: `${((i * 4.2) + ((i % 2 === 0 ? 1 : -1) * 8)) % 100}vw`,
+                        rotate: [0, 45, -45, 0]
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 3.5 + (i % 4) * 0.8,
+                        delay: (i * 0.15),
+                        ease: 'linear'
+                      }}
+                      style={{ position: 'absolute', top: 0, color: i % 2 === 0 ? 'var(--color-peach-primary)' : '#FF8585' }}
+                    >
+                      <Heart size={20 + (i % 4) * 6} fill="currentColor" />
+                    </motion.div>
+                  ))}
                 </div>
 
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.75rem', lineHeight: 1.6, marginBottom: '14px', color: '#180202' }}>
-                  Dear {recipientName},
-                </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.6rem', lineHeight: 1.6, marginBottom: '14px', color: '#180202' }}>
-                  Happy Birthday! You truly are one of one. Thank you for always being the most unhinged, hilarious, and genuinely caring human in my life. Through every chaotic late-night talk, inside joke, and spontaneous adventure, I am so grateful to have you.
-                </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.6rem', lineHeight: 1.6, marginBottom: '16px', color: '#180202' }}>
-                  Wishing you another legendary year filled with zero bugs, endless laughter, infinite good coffee, and every wish coming true!
-                </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.65rem', fontWeight: 700, textAlign: 'right', color: '#8D0B0B' }}>
-                  — Your Favorite Human
-                </p>
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    backgroundColor: '#FFF4EB',
+                    color: '#2B0404',
+                    padding: '36px 30px',
+                    borderRadius: '24px',
+                    boxShadow: '0 15px 40px rgba(0,0,0,0.5)',
+                    textAlign: 'left',
+                    margin: '20px auto 32px',
+                    border: '2px solid var(--color-peach-primary)',
+                    position: 'relative'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', borderBottom: '1.5px solid rgba(141, 11, 11, 0.15)', paddingBottom: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Mail size={20} color="#8D0B0B" />
+                      <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-burgundy-primary)', letterSpacing: '0.05em' }}>
+                        CONFIDENTIAL BIRTHDAY NOTE ✦ UNSEALED
+                      </span>
+                    </div>
+                  </div>
+
+                  <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.75rem', lineHeight: 1.6, marginBottom: '14px', color: '#180202' }}>
+                    Dear {recipientName},
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.6rem', lineHeight: 1.6, marginBottom: '14px', color: '#180202' }}>
+                    Happy Birthday! You truly are one of one. Thank you for always being the most unhinged, hilarious, and genuinely caring human in my life. Through every chaotic late-night talk, inside joke, and spontaneous adventure, I am so grateful to have you.
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.6rem', lineHeight: 1.6, marginBottom: '16px', color: '#180202' }}>
+                    Wishing you another legendary year filled with zero bugs, endless laughter, infinite good coffee, and every wish coming true!
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.65rem', fontWeight: 700, textAlign: 'right', color: '#8D0B0B' }}>
+                    — Your Favorite Human
+                  </p>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
 
@@ -1633,8 +1677,15 @@ export const BirthdayLiveExperience = ({ onComplete, recipientName = "Stacy" }) 
               <RotateCcw size={16} /> Replay Experience
             </button>
 
-            <MagneticButton to="/contact" variant="primary" size="md">
-              Make one for your favorite person →
+            <MagneticButton
+              onClick={() => {
+                playSuccess();
+                triggerConfettiCannons();
+              }}
+              variant="primary"
+              size="md"
+            >
+              <Heart size={16} fill="currentColor" /> Celebrate Stacy Forever ✨
             </MagneticButton>
           </div>
         </motion.div>
